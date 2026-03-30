@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>My Animation</title>
+    <style>
+        body {
+            background: black;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        .circle {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            background: cyan;
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%   { transform: translateY(0); }
+            50%  { transform: translateY(-200px); }
+            100% { transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+    <div class="circle"></div>
+</body>
+</html>
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>LC333 Click Effect</title>
+    <style>
+        body {
+            margin: 0;
+            overflow: hidden;
+            background: black;
+            color: lime;
+            font-family: monospace;
+        }
+
+        .text {
+            position: absolute;
+            color: lime;
+            font-size: 20px;
+            pointer-events: none;
+            animation: fade 2s linear forwards;
+        }
+
+        @keyframes fade {
+            0% { opacity: 1; transform: scale(1); }
+            100% { opacity: 0; transform: scale(2); }
+        }
+    </style>
+</head>
+<body>
+
+<script>
+function createText(x, y) {
+    let text = document.createElement("div");
+    text.className = "text";
+    text.innerHTML = "LC333";
+    text.style.left = x + "px";
+    text.style.top = y + "px";
+
+    document.body.appendChild(text);
+
+    setTimeout(() => {
+        text.remove();
+    }, 2000);
+}
+
+document.addEventListener("click", function(e) {
+    createText(e.clientX, e.clientY);
+});
+
+document.addEventListener("touchstart", function(e) {
+    let touch = e.touches[0];
+    createText(touch.clientX, touch.clientY);
+});
+</script>
+
+</body>
+</html>
